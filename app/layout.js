@@ -9,10 +9,27 @@ import "./css/card.scss";
 import "./css/globals.scss";
 const inter = Inter({ subsets: ["latin"] });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Yousef Yehia — Senior Backend Developer",
   description:
     "Portfolio of Yousef Yehia: backend developer specializing in PHP, Laravel, APIs, Magento 2, and WordPress. Experienced in scalable web applications, Agile delivery, and clean architecture.",
+  // Favicons: use app/icon.png & app/apple-icon.png (circular PNGs; run scripts/generate-circular-icon.mjs after changing Me.jpeg)
+  openGraph: {
+    title: "Yousef Yehia — Senior Backend Developer",
+    description:
+      "Backend developer specializing in PHP, Laravel, APIs, Magento 2, and WordPress.",
+    images: [{ url: "/image/Me.jpeg", width: 800, height: 800, alt: "Yousef Yehia" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yousef Yehia — Senior Backend Developer",
+    images: ["/image/Me.jpeg"],
+  },
 };
 
 export default function RootLayout({ children }) {
